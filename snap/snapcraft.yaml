@@ -73,7 +73,8 @@ parts:
       mkdir -p "$CRAFT_PART_BUILD"
       cd "$CRAFT_PART_BUILD"
       cmake "$CRAFT_PART_SRC/toonz/sources" \
-        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_BUILD_TYPE=Release \
+        -DWITH_TRANSLATION=OFF
       cmake --build . --parallel "${CRAFT_PARALLEL_BUILD_COUNT:-1}"
 
       cp -a bin "$CRAFT_PART_INSTALL/"
