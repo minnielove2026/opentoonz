@@ -25,7 +25,7 @@ apps:
     environment:
       DISABLE_WAYLAND: "1"
       HOME: "$SNAP_USER_COMMON"
-      LD_LIBRARY_PATH: "$SNAP/lib/opentoonz:$SNAP/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+      LD_LIBRARY_PATH: "$SNAP/lib/opentoonz:$SNAP/lib/x86_64-linux-gnu:$SNAP/usr/lib/x86_64-linux-gnu:$SNAP/usr/lib/x86_64-linux-gnu/libproxy:$SNAP/usr/lib/x86_64-linux-gnu/blas:$SNAP/usr/lib/x86_64-linux-gnu/lapack:$SNAP/usr/lib/x86_64-linux-gnu/pulseaudio${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     plugs:
       - audio-playback
       - home
@@ -146,6 +146,7 @@ parts:
       - libopencv-videoio406t64
       - libopenblas0-pthread
       - libpulse0
+      - libproxy1v5
       - libproxy1-plugin-networkmanager
       - libqt5core5t64
       - libqt5gui5t64
