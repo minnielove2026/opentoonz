@@ -66,6 +66,19 @@ parts:
     override-build: |
       set -eux
 
+      # The gnome extension is useful for runtime integration, but its SDK
+      # paths leak into the build and mix /snap libraries with host ones.
+      export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+      export CC=/usr/bin/gcc
+      export CXX=/usr/bin/g++
+      export LD=/usr/bin/ld
+      export PKG_CONFIG=/usr/bin/pkg-config
+      export LD_LIBRARY_PATH=/usr/lib/"$CRAFT_ARCH_TRIPLET_BUILD_FOR":/usr/lib:/lib/"$CRAFT_ARCH_TRIPLET_BUILD_FOR":/lib
+      export PKG_CONFIG_PATH=/usr/lib/"$CRAFT_ARCH_TRIPLET_BUILD_FOR"/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+      export PKG_CONFIG_LIBDIR=/usr/lib/"$CRAFT_ARCH_TRIPLET_BUILD_FOR"/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+      export CMAKE_PREFIX_PATH=/usr
+      unset SNAPCRAFT_GNOME_SDK GETTEXTDATADIRS GDK_PIXBUF_MODULE_FILE ACLOCAL_PATH PYTHONPATH GI_TYPELIB_PATH
+
       cd "$CRAFT_PART_SRC"/thirdparty/tiff-*
       ./configure --with-pic --disable-jbig
       make -j"${CRAFT_PARALLEL_BUILD_COUNT:-1}"
