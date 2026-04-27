@@ -93,7 +93,8 @@ parts:
       cmake --build . --parallel "${CRAFT_PARALLEL_BUILD_COUNT:-1}"
 
       cp -a bin "$CRAFT_PART_INSTALL/"
-      cp -a lib/opentoonz "$CRAFT_PART_INSTALL/lib"
+      mkdir -p "$CRAFT_PART_INSTALL/lib"
+      cp -a lib/opentoonz "$CRAFT_PART_INSTALL/lib/"
 
       mkdir -p "$CRAFT_PART_INSTALL/share/opentoonz"
       cp -a "$CRAFT_PART_SRC/stuff" "$CRAFT_PART_INSTALL/share/opentoonz/"

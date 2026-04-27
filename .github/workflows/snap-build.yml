@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build snap
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -38,7 +38,7 @@ jobs:
 
   smoke-test:
     name: Launch snap and capture screenshots
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
 
     steps:
@@ -61,7 +61,7 @@ jobs:
 
       - name: Install ghvmctl
         run: |
-          sudo snap install ghvmctl
+          sudo snap install ghvmctl --channel=stable
           sudo snap connect ghvmctl:lxd lxd:lxd
 
       - name: Prepare VM
